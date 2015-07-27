@@ -20,3 +20,5 @@ src/main/webapp/js/*.svg
 src/main/webapp/js/*dotci.js.map
 _book
 src/main/webapp/webcomponent-imports-vulcanized.html
+elm-stuff
+src/main/webapp/js/dotci-dashboard.js
