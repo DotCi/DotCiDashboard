@@ -22,6 +22,11 @@ module.exports = function(config){
           loader: 'style-loader!css-loader!less-loader'
         },
         {
+          test: /\.js?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+        },
+        {
           test: /\.css$/,
           loader: 'style-loader!css-loader!postcss-loader' 
         },

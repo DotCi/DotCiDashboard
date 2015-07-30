@@ -22,3 +22,5 @@ _book
 src/main/webapp/webcomponent-imports-vulcanized.html
 elm-stuff
 src/main/webapp/js/dotci-dashboard.js
+elm.js
+src/main/elm/app.js

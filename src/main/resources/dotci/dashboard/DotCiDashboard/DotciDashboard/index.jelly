@@ -28,7 +28,7 @@
                 <!--<link rel="import" href="${resURL}/plugin/DotCiDashboard/webcomponent-imports.html"/>-->
             </j:if>
             <j:if test='${!developmentMode}'>
-                <script src="${resURL}/plugin/DotCi/js/dotci-dashboard.js"/>
+                <script src="${resURL}/plugin/DotCiDotCiDashboard/js/dotci-dashboard.js"/>
                 <!--<link rel="import" href="${resURL}/plugin/DotCiDashboard/webcomponent-imports-vulcanized.html"/>-->
             </j:if>
         </head>
