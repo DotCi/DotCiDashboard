@@ -11,8 +11,9 @@ import Char
 import Html exposing (..)
 import Json.Decode as Json exposing ((:=))
 import Time
+import Model exposing (..)
 
-view : (Result String (List String)) -> Html
+view : (Result String (List Organization)) -> Html
 view result = 
   let messages = 
        case result of 
@@ -26,30 +27,28 @@ main =
 
 
 
-results : Signal.Mailbox (Result String (List String))
+results : Signal.Mailbox (Result String (List Organization))
 results =
   Signal.mailbox (Err "Error ")
 
-report projects =
-  Signal.send results.address  projects
 
 port requests : Signal (Task String ())
 port requests = 
    Signal.map lookUpProjects (Time.every 20000) 
     |> Signal.map (\task -> Task.toResult task `andThen` Signal.send results.address)
      
--- port requests : Signal (Task x ())
--- port requests = 
---     Task.toResult lookUpProjects 
 
-lookUpProjects: Time.Time  -> Task String (List String)
+lookUpProjects: Time.Time  -> Task String (List Organization)
 lookUpProjects x = 
-  succeed("http://localhost:8080/jenkins/dotciDashboard/api/")  `andThen` (mapError (always "Not found :(") << Http.get projects)
+  succeed("http://localhost:8080/jenkins/dotciDashboard/api/")  
+  `andThen` (mapError (always "Not found :(") << Http.get projects)
 
 
-projects : Json.Decoder (List String)
+projects : Json.Decoder (List Organization)
 projects =
-  let project = 
-    Json.string
+  let orgs = 
+    Json.object2 Organization
+               ("name" := Json.string)
+               ("url" := Json.string)
   in
-     "projects" := Json.list project
+     "projects" := Json.list orgs

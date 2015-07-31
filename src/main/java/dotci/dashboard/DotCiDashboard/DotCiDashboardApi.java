@@ -1,7 +1,9 @@
 package dotci.dashboard.DotCiDashboard;
 
 
+import com.groupon.jenkins.dynamic.organizationcontainer.*;
 import com.groupon.jenkins.util.*;
+import jenkins.model.*;
 import org.kohsuke.stapler.*;
 import org.kohsuke.stapler.export.*;
 
@@ -20,7 +22,8 @@ public class DotCiDashboardApi implements hudson.model.ModelObject{
         JsonResponse.render(req, rsp, this);
     }
     @Exported
-    public List<String> getProjects(){
-       return Arrays.asList("x") ;
+    public List<OrganizationContainer> getProjects(){
+        List<OrganizationContainer> orgs = Jenkins.getActiveInstance().getItems(OrganizationContainer.class);
+       return orgs;
     }
 }
