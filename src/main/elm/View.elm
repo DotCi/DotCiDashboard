@@ -1,6 +1,7 @@
 module View(error,model,view)  where
 import Html exposing (..)
 import Model exposing (Organization,Model)
+import List
 
 
 type Output =  Error String|ModelOk Model 
@@ -14,6 +15,13 @@ view : Output -> Html
 view output = 
   case output of 
      Error msg  -> text "Error"
-     ModelOk model  -> text "not error" 
-     
+     ModelOk model  -> orgsView model.orgs
 
+orgsView: List Organization -> Html
+orgsView orgs =
+  orgs 
+  |> List.map (\org -> orgView org) 
+  |> ul [] 
+     
+orgView org = 
+   li [][(text org.name)]
