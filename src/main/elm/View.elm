@@ -1,22 +1,18 @@
-module View(error,model,view)  where
+module View(view)  where
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Model exposing (Organization,Model)
+import Mailbox exposing (results)
 import List
 
 
-type Output =  Error String|ModelOk Model 
 
-error err  =
-     Error err
-model orgList =
-     ModelOk {orgs = orgList}
-
-view : Output -> Html
+view : Result String Model -> Html
 view output = 
   case output of 
-     Error msg  -> text "Error"
-     ModelOk model  -> orgsView model.orgs
+     Err msg  -> text msg
+     Ok model  -> orgsView model.orgs
 
 orgsView: List Organization -> Html
 orgsView orgs =
@@ -26,5 +22,7 @@ orgsView orgs =
      
 orgView org = 
    li [][
-   a [href "#"] [(text org.name)]
+   a [href "#",
+     onClick results.address (Err "meowlicious") ] 
+   [(text org.name)]
    ]

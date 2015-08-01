@@ -8,19 +8,15 @@ import Api exposing (lookUpProjects)
 import Mailbox exposing (results)
 
 main =
-  Signal.map toModel  results.signal
-
-toModel:  (Result String (List Organization)) -> Html
-toModel result =
-       case result of 
-         Err msg -> view   (error msg)
-         Ok orgs -> view (model orgs) 
+  Signal.map view  results.signal
 
 
 
 port requests : Signal (Task String ())
 port requests = 
-   Signal.map lookUpProjects (Time.every 20000) 
-    |> Signal.map (\task -> Task.toResult task `andThen` Signal.send results.address)
+    Signal.map lookUpProjects (Time.every 20000) 
+    |> Signal.map (\task -> Task.toResult(Task.map (\orgs -> {orgs=orgs}) task)
+                           `andThen` Signal.send results.address
+                   )
      
 
