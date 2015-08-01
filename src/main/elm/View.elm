@@ -3,7 +3,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Model exposing (Organization,Model)
-import Mailbox exposing (actions,Action(NoOp))
+import Actions exposing (actions,Action(NoOp))
 import List
 
 

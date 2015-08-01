@@ -5,7 +5,7 @@ import Task exposing (..)
 import Model exposing (..)
 import View exposing (..)
 import Api exposing (lookUpProjects)
-import Mailbox exposing (actions)
+import Actions exposing (actions)
 import Maybe exposing (Maybe(Just,Nothing))
 
 main =

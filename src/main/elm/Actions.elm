@@ -1,4 +1,4 @@
-module Mailbox where
+module Actions where
 import Model exposing (..)
 type Action  =
      OrgSelected String|
