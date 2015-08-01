@@ -1,5 +1,6 @@
 module View(error,model,view)  where
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Model exposing (Organization,Model)
 import List
 
@@ -24,4 +25,6 @@ orgsView orgs =
   |> ul [] 
      
 orgView org = 
-   li [][(text org.name)]
+   li [][
+   a [href "#"] [(text org.name)]
+   ]

@@ -5,7 +5,7 @@ import Task exposing (..)
 import Model exposing (..)
 import View exposing (..)
 import Api exposing (lookUpProjects)
-
+import Mailbox exposing (results)
 
 main =
   Signal.map toModel  results.signal
@@ -16,9 +16,6 @@ toModel result =
          Err msg -> view   (error msg)
          Ok orgs -> view (model orgs) 
 
-results : Signal.Mailbox (Result String (List Organization))
-results =
-  Signal.mailbox (Err "Error ")
 
 
 port requests : Signal (Task String ())
