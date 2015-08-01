@@ -3,7 +3,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Model exposing (Organization,Model)
-import Mailbox exposing (results)
+import Mailbox exposing (actions,Action(NoOp))
 import List
 
 
@@ -23,6 +23,6 @@ orgsView orgs =
 orgView org = 
    li [][
    a [href "#",
-     onClick results.address (Err "meowlicious") ] 
+     onClick actions.address NoOp ] 
    [(text org.name)]
    ]

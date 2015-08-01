@@ -1,5 +1,9 @@
 module Mailbox where
 import Model exposing (..)
-results : Signal.Mailbox (Result String Model)
-results =
-  Signal.mailbox (Err "Error ")
+type Action  =
+     OrgSelected String|
+     NoOp
+     
+actions : Signal.Mailbox  Action
+actions =
+  Signal.mailbox  NoOp
