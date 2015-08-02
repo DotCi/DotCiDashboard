@@ -9,7 +9,7 @@ import Actions exposing (actions,Action(OrgSelected,NoOp))
 import Maybe exposing (Maybe(Just,Nothing))
 
 main =
-  Signal.map2 output actions.signal results.signal
+  Signal.map2 output actions.signal orgs.signal
 
 output  action orgResult = 
   let selectedOrg =
@@ -22,13 +22,13 @@ output  action orgResult =
     Ok orgs -> view (Ok {orgs= orgs, selectedOrg=selectedOrg} )
 
 
-results : Signal.Mailbox (Result String (List Organization))
-results =
+orgs : Signal.Mailbox (Result String (List Organization))
+orgs =
   Signal.mailbox (Err "Error ")
 
 port requests : Signal (Task String ())
 port requests = 
     Signal.map lookUpProjects (Time.every 20000) 
-    |> Signal.map (\task -> Task.toResult(task) `andThen` Signal.send results.address)
+    |> Signal.map (\task -> Task.toResult(task) `andThen` Signal.send orgs.address)
      
 
