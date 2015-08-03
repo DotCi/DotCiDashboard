@@ -19,11 +19,11 @@ public class DotCiDashboardApi implements hudson.model.ModelObject{
     }
     public void doIndex(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
         rsp.setHeader("Access-Control-Allow-Origin","*");
-        JsonResponse.render(req, rsp, this);
+        JsonResponse.render(req, rsp, new Orgs());
     }
-    @Exported
-    public List<OrganizationContainer> getProjects(){
-        List<OrganizationContainer> orgs = Jenkins.getActiveInstance().getItems(OrganizationContainer.class);
-       return orgs;
+    public void getDynamic(String org, StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
+        rsp.setHeader("Access-Control-Allow-Origin","*");
+        JsonResponse.render(req, rsp, new Projects(org));
+
     }
 }

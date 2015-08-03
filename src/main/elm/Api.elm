@@ -1,20 +1,36 @@
-module Api(lookUpProjects) where
+module Api(lookUpOrgs) where
 import Time
 import Json.Decode as Json exposing ((:=))
 import Http
 import Task exposing (..)
 import Model exposing (..)
-lookUpProjects: Time.Time  -> Task String (List Organization)
-lookUpProjects x = 
-  succeed("http://localhost:8080/jenkins/dotciDashboard/api/")  
-  `andThen` (mapError (always "Not found :(") << Http.get projects)
 
+serverUrl = "http://localhost:8080/jenkins" 
 
-projects : Json.Decoder (List Organization)
+lookUpOrgs: Time.Time  -> Task String (List Organization)
+lookUpOrgs x = 
+  succeed(serverUrl ++ "/dotciDashboard/api/")  
+  `andThen` (mapError (always "Not found :(") << Http.get orgs)
+
+lookUpProjects: String  -> Task String (List Organization)
+lookUpProjects orgName = 
+  succeed(serverUrl ++ "/dotciDashboard/api/" ++ orgName ++ "/?tree=projects[*]")  
+  `andThen` (mapError (always "Not found :(") << Http.get orgs)
+
+projects : Json.Decoder (List Project)
 projects =
+  let projects = 
+    Json.object1 Project
+               ("name" := Json.string)
+  in
+     "projects" := Json.list projects
+
+
+orgs : Json.Decoder (List Organization)
+orgs =
   let orgs = 
     Json.object2 Organization
                ("name" := Json.string)
                ("url" := Json.string)
   in
-     "projects" := Json.list orgs
+     "orgs" := Json.list orgs

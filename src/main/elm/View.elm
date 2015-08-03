@@ -13,7 +13,7 @@ view output =
      Ok model  -> renderModel model
 
 renderModel model =
-     div [][ orgsView model.orgs, text (toString model.selectedOrg)]
+     div [][ orgsView model.orgs, text (toString model.projects)]
 
 orgsView: List Organization -> Html
 orgsView orgs =
