@@ -1,4 +1,4 @@
-module Api(lookUpOrgs) where
+module Api(lookUpOrgs,lookUpProjects) where
 import Time
 import Json.Decode as Json exposing ((:=))
 import Http
@@ -12,10 +12,10 @@ lookUpOrgs x =
   succeed(serverUrl ++ "/dotciDashboard/api/")  
   `andThen` (mapError (always "Not found :(") << Http.get orgs)
 
-lookUpProjects: String  -> Task String (List Organization)
+lookUpProjects: String  -> Task String (List Project)
 lookUpProjects orgName = 
   succeed(serverUrl ++ "/dotciDashboard/api/" ++ orgName ++ "/?tree=projects[*]")  
-  `andThen` (mapError (always "Not found :(") << Http.get orgs)
+  `andThen` (mapError (always "Not found :(") << Http.get projects)
 
 projects : Json.Decoder (List Project)
 projects =
