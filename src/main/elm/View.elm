@@ -5,6 +5,7 @@ import Html.Events exposing (..)
 import Model exposing (Organization,Model)
 import Actions exposing (actions,Action(NoOp,OrgSelected))
 import List
+import Component.OrgCard exposing(orgCard)
 
 view : Result String Model -> Html
 view output = 
@@ -13,25 +14,14 @@ view output =
      Ok model  -> renderModel model
 
 renderModel model =
-       div [][mdlStylesheet,mdlIcons,mdlScript,xbutton]
-     -- node "paper-drawer-panel" [][ orgsView model.orgs, text (toString "Meow")]
-xbutton = 
-  button [class "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"] [ i [class "material-icons"][text "add"]]
-
+       div [][mdlStylesheet,mdlIcons,mdlScript,(orgsView model.orgs)]
 
 orgsView: List Organization -> Html
 orgsView orgs =
   orgs 
-  |> List.map (\org -> orgView org) 
-  |> ul [] 
+  |> List.map (\org -> orgCard org.name) 
+  |> div [] 
      
-orgView org = 
-   li [][
-   a [href "#",
-     onClick actions.address (OrgSelected org.name)
-     ] 
-   [(text org.name)]
-   ]
 
 mdlStylesheet =
     let
