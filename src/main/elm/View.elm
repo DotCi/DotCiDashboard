@@ -2,7 +2,7 @@ module View(view)  where
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Model exposing (Organization,Model)
+import Model exposing (Organization,Model,Project)
 import Actions exposing (actions,Action(NoOp,OrgSelected))
 import List
 import Component.OrgCard exposing(orgCard)
@@ -14,7 +14,13 @@ view output =
      Ok model  -> renderModel model
 
 renderModel model =
-       div [][mdlStylesheet,mdlIcons,mdlScript,(orgsView model.orgs)]
+       div [][mdlStylesheet,mdlIcons,mdlScript,
+              div [class "mdl-grid"]
+                  [ 
+                  div [class "mdl-cell mdl-cell--6-col"] [(orgsView model.orgs)],
+                  div [class "mdl-cell mdl-cell--6-col"] [(projectsView model.projects)]
+                  ]
+              ]
 
 orgsView: List Organization -> Html
 orgsView orgs =
@@ -22,6 +28,11 @@ orgsView orgs =
   |> List.map (\org -> orgCard org.name) 
   |> div [] 
      
+projectsView: List Project -> Html
+projectsView orgs =
+  orgs 
+  |> List.map (\org -> orgCard org.name) 
+  |> div [] 
 
 mdlStylesheet =
     let
