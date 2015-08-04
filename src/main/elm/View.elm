@@ -1,5 +1,6 @@
 module View(view)  where
 import Html exposing (..)
+import Component.PaperDrawerPanel exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Model exposing (Organization,Model)
@@ -13,7 +14,8 @@ view output =
      Ok model  -> renderModel model
 
 renderModel model =
-     div [][ orgsView model.orgs, text (toString model.projects)]
+       drawerPanel (text "meow") (text "meow")
+     -- node "paper-drawer-panel" [][ orgsView model.orgs, text (toString "Meow")]
 
 orgsView: List Organization -> Html
 orgsView orgs =

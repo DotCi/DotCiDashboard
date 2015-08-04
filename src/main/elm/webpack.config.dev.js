@@ -5,7 +5,7 @@ module.exports = require('./make-webpack-config.js')(
       "dotci-dashboard":  [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
-        "./src/main/elm/app.js"
+        "./app.js"
       ]},
       output: {
         filename: "dotci-dashboard.js",
