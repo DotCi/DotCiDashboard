@@ -21,6 +21,12 @@
             <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css"/>
             <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script src="${resURL}/plugin/DotCiDashboard/js/jquery.gridster.with-extras.js"/>
+            <link rel="stylesheet" href="${resURL}/plugin/DotCiDashboard/css/jquery.gridster.css"/>
+            <link rel="stylesheet" href="${resURL}/plugin/DotCiDashboard/css/grid.css"/>
             <script>
                 rootURL = '${rootURL}'
                 resURL= '${resURL}/plugin/DotCi/'
@@ -30,21 +36,16 @@
                 <script src="http://localhost:3000/assets/dotci-dashboard.js"/>
             </j:if>
             <j:if test='${!developmentMode}'>
-                <script src="${resURL}/plugin/DotCiDotCiDashboard/js/dotci-dashboard.js"/>
+                <script src="${resURL}/plugin/DotCiDashboard/js/dotci-dashboard.js"/>
             </j:if>
         </head>
                 <body class="fullbleed">
-                    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
-            mdl-layout--fixed-header">
+                    <div class="mdl-layout mdl mdl-layout--fixed-header">
                         <header class="mdl-layout__header">
                             <div class="mdl-layout__header-row">
                                 <div class="mdl-layout-spacer"></div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
-                                    <label class="mdl-button mdl-js-button mdl-button--icon"
-                                           for="fixed-header-drawer-exp">
-                                        <i class="material-icons">search</i>
-                                    </label>
                                     <div class="mdl-textfield__expandable-holder">
                                         <input class="mdl-textfield__input" type="text" name="sample"
                                                id="fixed-header-drawer-exp" />
@@ -52,17 +53,24 @@
                                 </div>
                             </div>
                         </header>
-                        <!--<div class="mdl-layout__drawer">-->
-                            <!--<span class="mdl-layout-title">Menu</span>-->
-                            <!--<nav class="mdl-navigation">-->
-                            <!--</nav>-->
-                        <!--</div>-->
                         <main class="mdl-layout__content">
                             <div class="page-content">
-                                 <div id="main"/>
+
+                            <div class="demo-grid-ruler mdl-grid">
+                                <div class="mdl-cell mdl-cell--6-col">
+                                    <div id="main"/>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col">
+                                    <div class="gridster">
+                                        <ul></ul>
+                                    </div>
+                                </div>
+                                </div>
+
                             </div>
                         </main>
                     </div>
+
                 </body>
 
     </j:jelly>
