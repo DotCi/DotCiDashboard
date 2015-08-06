@@ -20,8 +20,9 @@ lookUpProjects orgName =
 projects : Json.Decoder (List Project)
 projects =
   let projects = 
-    Json.object1 Project
+    Json.object2 Project
                ("name" := Json.string)
+               ("org" := Json.string)
   in
      "projects" := Json.list projects
 

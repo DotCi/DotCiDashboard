@@ -1,7 +1,7 @@
 module Model where
 
 type alias Organization = { name : String, url : String }
-type alias Project = { name : String}
+type alias Project = { name : String, org: String}
 
 type alias Model = { orgs: List Organization, projects: List Project}
 

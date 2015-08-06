@@ -3,9 +3,9 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Model exposing (Organization,Model,Project)
-import Actions exposing (actions,Action(NoOp,OrgSelected))
+import Actions exposing (actions,Action(..))
 import List
-import Component.OrgCard exposing(orgCard)
+import Component.OrgCard exposing(card)
 
 view : Result String Model -> Html
 view output = 
@@ -25,13 +25,13 @@ renderModel model =
 orgsView: List Organization -> Html
 orgsView orgs =
   orgs 
-  |> List.map (\org -> orgCard org.name) 
+  |> List.map (\org -> card org.name (OrgSelected org.name) "View Projects") 
   |> div [] 
      
 projectsView: List Project -> Html
-projectsView orgs =
-  orgs 
-  |> List.map (\org -> orgCard org.name) 
+projectsView projects =
+  projects 
+  |> List.map (\project -> card project.name (ProjectSelected project) "Add") 
   |> div [] 
 
 mdlStylesheet =

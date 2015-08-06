@@ -39,39 +39,44 @@
                 <script src="${resURL}/plugin/DotCiDashboard/js/dotci-dashboard.js"/>
             </j:if>
         </head>
-                <body class="fullbleed">
-                    <div class="mdl-layout mdl mdl-layout--fixed-header">
-                        <header class="mdl-layout__header">
-                            <div class="mdl-layout__header-row">
-                                <div class="mdl-layout-spacer"></div>
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        <body class="fullbleed">
+            <div class="mdl-layout mdl mdl-layout--fixed-header">
+                <header class="mdl-layout__header">
+                    <div class="mdl-layout__header-row">
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
-                                    <div class="mdl-textfield__expandable-holder">
-                                        <input class="mdl-textfield__input" type="text" name="sample"
-                                               id="fixed-header-drawer-exp" />
-                                    </div>
-                                </div>
+                            <div class="mdl-textfield__expandable-holder">
+                                <input class="mdl-textfield__input" type="text" name="sample"
+                                       id="fixed-header-drawer-exp" />
                             </div>
-                        </header>
-                        <main class="mdl-layout__content">
-                            <div class="page-content">
-
-                            <div class="demo-grid-ruler mdl-grid">
-                                <div class="mdl-cell mdl-cell--6-col">
-                                    <div id="main"/>
-                                </div>
-                                <div class="mdl-cell mdl-cell--6-col">
-                                    <div class="gridster">
-                                        <ul></ul>
-                                    </div>
-                                </div>
-                                </div>
-
-                            </div>
-                        </main>
+                        </div>
                     </div>
+                </header>
+                <main class="mdl-layout__content">
+                    <div class="page-content">
 
-                </body>
+                        <div class="demo-grid-ruler mdl-grid">
+                            <div class="mdl-cell mdl-cell--6-col">
+                                <div id="main"/>
+                            </div>
+                            <div class="mdl-cell mdl-cell--6-col mdl-shadow--2dp">
+                                <h4 style="margin-left: 24px;">Preview</h4>
+
+                                <div class="gridster">
+                                    <ul></ul>
+                                </div>
+                                <a id="save-dashboard" style="margin-left: 24px; margin-top: 24px" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    Save
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+            </div>
+
+        </body>
 
     </j:jelly>
 </html>

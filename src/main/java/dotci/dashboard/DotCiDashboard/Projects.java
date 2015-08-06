@@ -19,7 +19,7 @@ public class Projects {
         OrganizationContainer org = (OrganizationContainer) Jenkins.getInstance().getItem(this.org);
         List<Project> projects = new ArrayList<Project>();
         for(DynamicProject project : org.getItems()){
-           projects.add(new Project(project.getName()));
+           projects.add(new Project(project.getName(), project.getParent().getName()));
         }
         return projects;
     }
@@ -33,8 +33,16 @@ public class Projects {
         }
 
         private String name;
-        public Project(String name) {
+        private String org;
+
+        public Project(String name, String org) {
             this.name = name;
+            this.org = org;
+        }
+
+        @Exported
+        public String getOrg() {
+            return org;
         }
 
     }
