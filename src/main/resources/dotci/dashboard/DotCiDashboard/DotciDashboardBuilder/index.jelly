@@ -26,7 +26,6 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
             <script src="${resURL}/plugin/DotCiDashboard/js/jquery.gridster.with-extras.js"/>
             <link rel="stylesheet" href="${resURL}/plugin/DotCiDashboard/css/jquery.gridster.css"/>
-            <link rel="stylesheet" href="${resURL}/plugin/DotCiDashboard/css/grid.css"/>
             <script>
                 rootURL = '${rootURL}'
                 resURL= '${resURL}/plugin/DotCi/'

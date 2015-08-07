@@ -1,8 +1,16 @@
 package dotci.dashboard.DotCiDashboard;
 
+import com.groupon.jenkins.util.*;
 import hudson.model.*;
+import org.kohsuke.stapler.*;
+import org.kohsuke.stapler.export.*;
 
+import javax.servlet.*;
+import java.io.*;
+
+@ExportedBean
 public class DotCiDashboardViewItem implements ModelObject {
+    @Exported
     public String getConfiguration() {
         return configuration;
     }
@@ -11,6 +19,7 @@ public class DotCiDashboardViewItem implements ModelObject {
     private String name;
 
 
+    @Exported
     public String getName() {
         return name;
     }
@@ -20,10 +29,6 @@ public class DotCiDashboardViewItem implements ModelObject {
         this.configuration  = configuration;
     }
 
-    public String getUrl() {
-        return null;
-    }
-
     public void save() {
        DotCiDashboardViewItemRepository.get().save(this);
     }
@@ -31,5 +36,9 @@ public class DotCiDashboardViewItem implements ModelObject {
     @Override
     public String getDisplayName() {
         return "DotCi Dashboard View";
+    }
+    public void doApi(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
+        rsp.setHeader("Access-Control-Allow-Origin","*");
+        JsonResponse.render(req, rsp,this );
     }
 }
