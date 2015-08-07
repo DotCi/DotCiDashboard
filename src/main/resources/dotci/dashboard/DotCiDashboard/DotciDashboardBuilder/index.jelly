@@ -31,6 +31,7 @@
                 rootURL = '${rootURL}'
                 resURL= '${resURL}/plugin/DotCi/'
                 DEVELOPMENT_MODE = '${developmentMode}'
+                dashBoardBuilder = true;
             </script>
             <j:if test='${developmentMode}'>
                 <script src="http://localhost:3000/assets/dotci-dashboard.js"/>
